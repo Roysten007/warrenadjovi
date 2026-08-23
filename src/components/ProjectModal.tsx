@@ -8,7 +8,7 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [videoError, setVideoError] = useState(false);
   const [isLoadingVideo, setIsLoadingVideo] = useState(true);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1);
@@ -16,10 +16,26 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   useEffect(() => {
     setVideoError(false);
-    setIsMuted(false);
+    setIsMuted(true); // Default to muted for instant autoplay compliance across all browsers
     setIsLoadingVideo(true);
     setPlaybackSpeed(1);
-  }, [project?.id]);
+
+    // Prevent body scrolling while modal is open
+    document.body.style.overflow = 'hidden';
+
+    // Keyboard ESC key listener
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [project?.id, onClose]);
 
   const handleSpeedChange = (speed: number) => {
     setPlaybackSpeed(speed);
@@ -35,31 +51,31 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-video-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-2xl animate-fadeIn overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/95 backdrop-blur-2xl animate-fadeIn overflow-y-auto"
     >
-      {/* Backdrop overlay (click to close) */}
+      {/* Click outside backdrop */}
       <div
-        className="fixed inset-0 bg-black/85 -z-10"
+        className="fixed inset-0 bg-black/90 -z-10"
         onClick={onClose}
         aria-label="Fermer le lecteur vidéo en cliquant en dehors"
       />
 
-      {/* Outer Floating Close Button Top-Right (Just the X icon) */}
+      {/* 1. Giant Floating Outer Close Button Top-Right */}
       <button
         onClick={onClose}
-        className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[100] w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black flex items-center justify-center text-lg font-bold shadow-[0_0_20px_rgba(132,204,22,0.6)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+        className="fixed top-3 right-3 sm:top-6 sm:right-6 z-[100] w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black border-2 border-black flex items-center justify-center text-2xl font-black shadow-[0_0_30px_rgba(132,204,22,0.8)] transition-all hover:scale-110 active:scale-95 cursor-pointer"
         aria-label="Fermer la vidéo"
-        title="Fermer la vidéo"
+        title="Fermer la vidéo (Touche Échap)"
       >
         <FaXmark />
       </button>
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-md sm:max-w-lg bg-[#09090b] border border-white/20 rounded-3xl overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.95)] z-10 flex flex-col max-h-[92vh] my-auto">
+      <div className="relative w-full max-w-md sm:max-w-lg bg-[#09090b] border-2 border-white/20 rounded-3xl overflow-hidden shadow-[0_25px_90px_rgba(0,0,0,0.98)] z-10 flex flex-col max-h-[92vh] my-auto">
         
-        {/* Modal Header Bar */}
-        <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b border-white/10 bg-black/90 gap-3">
-          <div className="flex items-center gap-2.5 min-w-0 pr-4">
+        {/* 2. Modal Header Bar with Bold Neon Close Button */}
+        <div className="flex items-center justify-between px-4 sm:px-5 py-3.5 border-b border-white/10 bg-black/95 gap-3">
+          <div className="flex items-center gap-2.5 min-w-0 pr-2">
             <span className="px-2.5 py-0.5 rounded-full bg-[#84cc16]/15 border border-[#84cc16]/30 text-[#84cc16] text-[11px] font-mono font-bold flex-shrink-0">
               {project.platform || 'Format Vertical'}
             </span>
@@ -68,13 +84,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </h3>
           </div>
 
-          {/* Clean Close Icon Button in Header Bar */}
+          {/* Unmissable Neon Close Button in Header Bar */}
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white hover:text-[#84cc16] transition-colors cursor-pointer flex-shrink-0"
-            aria-label="Fermer la fenêtre de la vidéo"
+            className="px-4 py-2 rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-[0_0_15px_rgba(132,204,22,0.6)] transition-all hover:scale-105 active:scale-95 cursor-pointer flex-shrink-0 min-h-[38px]"
+            aria-label="Fermer la vidéo"
           >
-            <FaXmark className="text-sm font-bold" />
+            <FaXmark className="text-base font-black" />
+            <span className="font-extrabold">Fermer</span>
           </button>
         </div>
 
@@ -122,15 +139,19 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               />
             )}
 
-            {/* Floating Mute/Unmute Control */}
+            {/* Floating Mute/Unmute Control Pill */}
             <div className="absolute top-3 right-3 z-20">
               <button
                 onClick={() => setIsMuted(!isMuted)}
-                className="px-3.5 py-2 rounded-full bg-black/85 backdrop-blur-md border border-white/20 text-[#84cc16] hover:text-white transition-colors text-xs flex items-center gap-1.5 shadow-lg min-h-[36px] cursor-pointer"
+                className={`px-4 py-2 rounded-full backdrop-blur-md border transition-all text-xs flex items-center gap-2 shadow-xl min-h-[38px] cursor-pointer ${
+                  isMuted
+                    ? 'bg-[#84cc16] text-black border-black font-extrabold shadow-[0_0_20px_rgba(132,204,22,0.6)] animate-pulse'
+                    : 'bg-black/85 text-white border-white/20 hover:text-[#84cc16]'
+                }`}
                 aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
               >
-                {isMuted ? <FaVolumeXmark className="text-xs" /> : <FaVolumeHigh className="text-xs" />}
-                <span className="text-[11px] font-mono font-bold">{isMuted ? 'Muet' : 'Son activé'}</span>
+                {isMuted ? <FaVolumeXmark className="text-sm" /> : <FaVolumeHigh className="text-sm text-[#84cc16]" />}
+                <span className="text-xs font-bold uppercase">{isMuted ? '🔊 Activer le son' : 'Son activé'}</span>
               </button>
             </div>
           </div>
@@ -161,7 +182,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           {/* Quick WhatsApp CTA */}
-          <div className="pt-1">
+          <div className="pt-1 space-y-2.5">
             <a
               href={`https://wa.me/2290162569665?text=${encodeURIComponent(`Bonjour Warren, j'ai vu votre vidéo "${project.title}" et j'aimerais un rendu similaire pour mon projet.`)}`}
               target="_blank"
@@ -171,6 +192,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <FaWhatsapp className="text-lg flex-shrink-0" />
               <span>Demander un montage similaire</span>
             </a>
+
+            {/* 3. Full Width Bottom Close Button */}
+            <button
+              onClick={onClose}
+              className="w-full py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-extrabold text-xs uppercase flex items-center justify-center gap-2 transition-all cursor-pointer min-h-[44px]"
+              aria-label="Fermer la vidéo"
+            >
+              <FaXmark className="text-base text-[#84cc16]" />
+              <span>Fermer la vidéo</span>
+            </button>
           </div>
 
         </div>
