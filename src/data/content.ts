@@ -264,7 +264,7 @@ export const PRICING_DATA: PricingPlan[] = [
       '2 rounds de retouches inclus'
     ],
     ctaText: 'Commander ce pack',
-    ctaLink: 'https://wa.me/22900000000?text=Bonjour%20Warren,%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Pack%20Cr%C3%A9ateur%20Short-Form'
+    ctaLink: 'https://wa.me/2290162569665?text=Bonjour%20Warren,%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Pack%20Cr%C3%A9ateur%20Short-Form'
   },
   {
     id: 'pack-youtube-pro',
@@ -283,7 +283,7 @@ export const PRICING_DATA: PricingPlan[] = [
       'Communication directe et prioritaire sur WhatsApp'
     ],
     ctaText: 'Démarrer ce projet',
-    ctaLink: 'https://wa.me/22900000000?text=Bonjour%20Warren,%20je%20souhaite%20r%C3%A9server%20le%20Pack%20YouTube%20%26%20Production%20Pro'
+    ctaLink: 'https://wa.me/2290162569665?text=Bonjour%20Warren,%20je%20souhaite%20r%C3%A9server%20le%20Pack%20YouTube%20%26%20Production%20Pro'
   },
   {
     id: 'pack-custom',
@@ -301,7 +301,7 @@ export const PRICING_DATA: PricingPlan[] = [
       'Délais prioritaires garantis'
     ],
     ctaText: 'Discuter de vos besoins',
-    ctaLink: 'https://wa.me/22900000000?text=Bonjour%20Warren,%20j%27aimerais%20discuter%20d%27un%20partenariat%20sur%20mesure'
+    ctaLink: 'https://wa.me/2290162569665?text=Bonjour%20Warren,%20j%27aimerais%20discuter%20d%27un%20partenariat%20sur%20mesure'
   }
 ];
 

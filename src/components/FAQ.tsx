@@ -121,7 +121,7 @@ export default function FAQ() {
             <p className="text-xs text-textMuted mt-0.5">Je réponds directement à toutes vos interrogations sur WhatsApp.</p>
           </div>
           <a
-            href="https://wa.me/22900000000?text=Bonjour%20Warren,%20j%27ai%20une%20question%20sur%20tes%20prestations"
+            href="https://wa.me/2290162569665?text=Bonjour%20Warren,%20j%27ai%20une%20question%20sur%20tes%20prestations"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-charcoal-800 hover:bg-chartreuse/15 border border-chartreuse/40 text-chartreuse text-xs font-bold uppercase tracking-wider transition-all"

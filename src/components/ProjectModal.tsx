@@ -84,7 +84,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Quick CTA inside Modal */}
           <div className="pt-2">
             <a
-              href={`https://wa.me/22900000000?text=${encodeURIComponent(`Bonjour Warren, j'ai vu votre vidéo "${project.title}" et j'aimerais un rendu similaire pour mon projet.`)}`}
+              href={`https://wa.me/2290162569665?text=${encodeURIComponent(`Bonjour Warren, j'ai vu votre vidéo "${project.title}" et j'aimerais un rendu similaire pour mon projet.`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black font-extrabold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(132,204,22,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"

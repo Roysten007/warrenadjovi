@@ -57,7 +57,7 @@ export default function BottomPopup() {
         {/* Right Side: Quick Action Buttons */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <a
-            href="https://wa.me/22990000000?text=Bonjour%20Warren,%20j'ai%20un%20projet%20vidéo%20à%20vous%20confier"
+            href="https://wa.me/2290162569665?text=Bonjour%20Warren,%20j'ai%20un%20projet%20vid%C3%A9o%20%C3%A0%20vous%20confier"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black font-extrabold text-xs tracking-wider shadow-[0_0_20px_rgba(132,204,22,0.4)] hover:shadow-[0_0_30px_rgba(132,204,22,0.6)] transition-all duration-300 hover:scale-105 active:scale-95"
