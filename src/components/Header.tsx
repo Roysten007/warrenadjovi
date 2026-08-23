@@ -4,14 +4,7 @@ import { FaWhatsapp, FaInstagram, FaYoutube, FaArrowRight, FaBars, FaXmark } fro
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [activeSection, setActiveSection] = useState<string>('hero');
 
   const navLinks = [
     { label: 'Accueil', href: '#hero' },
@@ -22,6 +15,30 @@ export default function Header() {
     { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#contact' },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+
+      const sectionIds = ['hero', 'realisations', 'services', 'tarifs', 'about', 'faq', 'contact'];
+      const scrollPosition = window.scrollY + 220;
+
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveSection(sectionIds[i]);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <header
@@ -41,15 +58,24 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-1.5">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="px-4 py-2 text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors rounded-full hover:bg-white/5"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const sectionId = link.href.replace('#', '');
+            const isActive = activeSection === sectionId;
+
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`px-4 py-2 text-xs sm:text-sm transition-all duration-300 rounded-full ${
+                  isActive
+                    ? 'bg-[#84cc16]/15 text-[#84cc16] border border-[#84cc16]/40 font-extrabold shadow-[0_0_15px_rgba(132,204,22,0.25)]'
+                    : 'text-[#a1a1aa] hover:text-white hover:bg-white/5 font-medium'
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Right Action: Green CTA Button */}
@@ -77,16 +103,25 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-charcoal-900/95 backdrop-blur-xl border-b border-white/10 px-6 py-6 space-y-4">
           <nav className="flex flex-col space-y-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 text-base font-medium text-textMuted hover:text-chartreuse transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const sectionId = link.href.replace('#', '');
+              const isActive = activeSection === sectionId;
+
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`px-4 py-2.5 text-base rounded-xl transition-all ${
+                    isActive
+                      ? 'bg-[#84cc16]/15 text-[#84cc16] border border-[#84cc16]/40 font-extrabold'
+                      : 'text-[#a1a1aa] hover:text-white font-medium'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </nav>
           <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
             <a
