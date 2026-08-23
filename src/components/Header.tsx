@@ -92,16 +92,16 @@ export default function Header() {
         {/* Mobile Hamburger Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[#84cc16] transition-colors"
-          aria-label="Toggle menu"
+          className="lg:hidden w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[#84cc16] transition-colors"
+          aria-label={mobileMenuOpen ? 'Fermer le menu de navigation' : 'Ouvrir le menu de navigation'}
         >
-          {mobileMenuOpen ? <FaXmark className="text-lg" /> : <FaBars className="text-lg" />}
+          {mobileMenuOpen ? <FaXmark className="text-xl" /> : <FaBars className="text-xl" />}
         </button>
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-charcoal-900/95 backdrop-blur-xl border-b border-white/10 px-6 py-6 space-y-4">
+        <div className="lg:hidden bg-[#09090b]/98 backdrop-blur-2xl border-b border-white/10 px-6 py-6 space-y-4 shadow-2xl">
           <nav className="flex flex-col space-y-2">
             {navLinks.map((link) => {
               const sectionId = link.href.replace('#', '');
@@ -112,7 +112,7 @@ export default function Header() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-2.5 text-base rounded-xl transition-all ${
+                  className={`px-4 py-3 text-base rounded-xl transition-all min-h-[44px] flex items-center ${
                     isActive
                       ? 'bg-[#84cc16]/15 text-[#84cc16] border border-[#84cc16]/40 font-extrabold'
                       : 'text-[#a1a1aa] hover:text-white font-medium'
@@ -127,7 +127,7 @@ export default function Header() {
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-chartreuse text-charcoal-900 font-bold text-sm uppercase tracking-wider shadow-glow-cta"
+              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full bg-[#84cc16] text-black font-extrabold text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(132,204,22,0.4)] min-h-[44px]"
             >
               <span>Démarrer un projet</span>
               <FaArrowRight />
@@ -137,7 +137,8 @@ export default function Header() {
                 href="https://wa.me/2290162569665"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#a1a1aa] hover:text-[#84cc16] text-xl"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#a1a1aa] hover:text-[#84cc16] text-xl"
+                aria-label="Contacter Warren sur WhatsApp"
               >
                 <FaWhatsapp />
               </a>

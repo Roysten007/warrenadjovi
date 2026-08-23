@@ -70,10 +70,10 @@ export default function BottomPopup() {
           {/* Dismiss Button */}
           <button
             onClick={() => setIsDismissed(true)}
-            className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
-            aria-label="Fermer la notification"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors cursor-pointer"
+            aria-label="Fermer la notification de disponibilité"
           >
-            <FaXmark className="text-xs" />
+            <FaXmark className="text-base" />
           </button>
         </div>
 

@@ -74,10 +74,10 @@ export default function Footer() {
             <span className="text-textMuted">Design & Production Créative Haut de Gamme</span>
             <button
               onClick={scrollToTop}
-              className="w-8 h-8 rounded-full bg-charcoal-800 border border-white/10 hover:border-chartreuse flex items-center justify-center text-textLight hover:text-chartreuse transition-colors"
-              aria-label="Retour en haut"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-[#161619] border border-white/10 hover:border-[#84cc16] flex items-center justify-center text-[#a1a1aa] hover:text-[#84cc16] transition-colors cursor-pointer"
+              aria-label="Retourner en haut de la page"
             >
-              <FaArrowUp className="text-xs" />
+              <FaArrowUp className="text-sm" />
             </button>
           </div>
         </div>

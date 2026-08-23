@@ -152,10 +152,10 @@ export default function WhatsAppProof() {
               </span>
               <button
                 onClick={() => setActiveImage(null)}
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-white/70 hover:text-white transition-colors"
-                aria-label="Fermer"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black border border-[#84cc16]/50 flex items-center justify-center font-bold text-lg transition-colors cursor-pointer shadow-lg"
+                aria-label="Fermer l'image de la capture"
               >
-                <FaXmark className="text-sm" />
+                <FaXmark />
               </button>
             </div>
 
@@ -164,6 +164,7 @@ export default function WhatsAppProof() {
               <img
                 src={activeImage}
                 alt="Capture WhatsApp Agrandie"
+                loading="lazy"
                 className="w-full h-auto max-h-[78vh] object-contain rounded-2xl"
               />
             </div>
