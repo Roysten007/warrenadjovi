@@ -3,6 +3,15 @@ import { FaCheck, FaArrowRight, FaStar, FaClock } from 'react-icons/fa6';
 import { SERVICES_DATA } from '../data/content';
 
 export default function Services() {
+  const handleViewPricing = (serviceId: string) => {
+    const targetFormat = serviceId.includes('short') ? 'short' : 'motion';
+    window.dispatchEvent(new CustomEvent('selectPricingFormat', { detail: targetFormat }));
+    const pricingSection = document.getElementById('tarifs');
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="services" className="py-24 bg-black relative overflow-hidden">
       {/* Subtle Neon Halo */}
@@ -84,15 +93,13 @@ export default function Services() {
 
                 {/* Bottom CTA Button */}
                 <div className="pt-4">
-                  <a
-                    href={`https://wa.me/22900000000?text=${encodeURIComponent(`Bonjour Warren, je souhaite commander votre service "${service.title}". Pouvons-nous échanger ?`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-4 rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black font-display font-extrabold text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(132,204,22,0.35)] hover:shadow-[0_0_35px_rgba(132,204,22,0.6)] transition-all duration-300 group-hover:scale-[1.02] active:scale-95"
+                  <button
+                    onClick={() => handleViewPricing(service.id)}
+                    className="w-full py-4 rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black font-display font-extrabold text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(132,204,22,0.35)] hover:shadow-[0_0_35px_rgba(132,204,22,0.6)] transition-all duration-300 group-hover:scale-[1.02] active:scale-95 cursor-pointer"
                   >
-                    <span>Commander ce service</span>
+                    <span>Voir les tarifs</span>
                     <FaArrowRight className="text-xs transition-transform duration-300 group-hover:translate-x-1" />
-                  </a>
+                  </button>
                 </div>
 
               </div>

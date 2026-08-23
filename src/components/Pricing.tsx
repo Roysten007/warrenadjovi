@@ -65,6 +65,18 @@ export default function Pricing() {
   const [activeOptionIds, setActiveOptionIds] = useState<string[]>([]);
   const [displayedTotal, setDisplayedTotal] = useState<number>(25);
 
+  useEffect(() => {
+    const handleFormatSelect = (e: CustomEvent<string>) => {
+      if (e.detail === 'short' || e.detail === 'motion') {
+        setSelectedFormatId(e.detail);
+      }
+    };
+    window.addEventListener('selectPricingFormat' as any, handleFormatSelect);
+    return () => {
+      window.removeEventListener('selectPricingFormat' as any, handleFormatSelect);
+    };
+  }, []);
+
   // Active Format & Pack
   const currentFormat = PRICING_CONFIG.formats.find((f) => f.id === selectedFormatId)!;
   const currentPack = currentFormat.packs.find((p) => p.count === selectedQuantityCount) || currentFormat.packs[0];
