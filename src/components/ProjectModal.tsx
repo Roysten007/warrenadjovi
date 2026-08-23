@@ -35,31 +35,31 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-video-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/95 backdrop-blur-2xl animate-fadeIn overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-2xl animate-fadeIn overflow-y-auto"
     >
       {/* Backdrop overlay (click to close) */}
       <div
-        className="fixed inset-0 bg-black/90 -z-10"
+        className="fixed inset-0 bg-black/85 -z-10"
         onClick={onClose}
         aria-label="Fermer le lecteur vidéo en cliquant en dehors"
       />
 
-      {/* Floating Outer Close Button (Top-Right) */}
+      {/* Outer Floating Close Button Top-Right (Just the X icon) */}
       <button
         onClick={onClose}
-        className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[100] w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black border-2 border-black flex items-center justify-center text-2xl font-black shadow-[0_0_30px_rgba(132,204,22,0.8)] transition-all hover:scale-110 active:scale-95 cursor-pointer"
+        className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[100] w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black flex items-center justify-center text-lg font-bold shadow-[0_0_20px_rgba(132,204,22,0.6)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
         aria-label="Fermer la vidéo"
-        title="Fermer la vidéo (Échap)"
+        title="Fermer la vidéo"
       >
         <FaXmark />
       </button>
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-md sm:max-w-lg bg-[#09090b] border-2 border-white/20 rounded-3xl overflow-hidden shadow-[0_25px_90px_rgba(0,0,0,0.98)] z-10 flex flex-col max-h-[92vh] my-auto">
+      <div className="relative w-full max-w-md sm:max-w-lg bg-[#09090b] border border-white/20 rounded-3xl overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.95)] z-10 flex flex-col max-h-[92vh] my-auto">
         
-        {/* Modal Header Bar with Explicit Close Button */}
-        <div className="flex items-center justify-between px-4 sm:px-5 py-3.5 border-b border-white/10 bg-black/90 gap-3">
-          <div className="flex items-center gap-2.5 min-w-0">
+        {/* Modal Header Bar */}
+        <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b border-white/10 bg-black/90 gap-3">
+          <div className="flex items-center gap-2.5 min-w-0 pr-4">
             <span className="px-2.5 py-0.5 rounded-full bg-[#84cc16]/15 border border-[#84cc16]/30 text-[#84cc16] text-[11px] font-mono font-bold flex-shrink-0">
               {project.platform || 'Format Vertical'}
             </span>
@@ -68,14 +68,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </h3>
           </div>
 
-          {/* Primary Header Close Button (Unmissable) */}
+          {/* Clean Close Icon Button in Header Bar */}
           <button
             onClick={onClose}
-            className="px-3.5 py-1.5 rounded-full bg-[#84cc16] hover:bg-[#99f116] text-black font-extrabold text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-[0_0_15px_rgba(132,204,22,0.5)] transition-all hover:scale-105 active:scale-95 cursor-pointer flex-shrink-0 min-h-[36px]"
+            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white hover:text-[#84cc16] transition-colors cursor-pointer flex-shrink-0"
             aria-label="Fermer la fenêtre de la vidéo"
           >
-            <FaXmark className="text-sm font-black" />
-            <span>Fermer</span>
+            <FaXmark className="text-sm font-bold" />
           </button>
         </div>
 
@@ -105,7 +104,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   className="w-full h-full object-contain bg-black"
                 />
 
-                {/* Loading Spinner Overlay when video is buffering */}
+                {/* Loading Spinner Overlay */}
                 {isLoadingVideo && (
                   <div className="absolute inset-0 bg-black/60 backdrop-blur-xs flex flex-col items-center justify-center gap-2 pointer-events-none z-10">
                     <FaSpinner className="text-3xl text-[#84cc16] animate-spin" />
@@ -122,16 +121,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 className="w-full h-full object-cover"
               />
             )}
-
-            {/* Top-Left Close Button DIRECTLY ON THE VIDEO */}
-            <button
-              onClick={onClose}
-              className="absolute top-3 left-3 z-30 px-3.5 py-1.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-black text-xs uppercase flex items-center gap-1.5 shadow-[0_0_15px_rgba(220,38,38,0.8)] border border-red-400/50 transition-all hover:scale-105 active:scale-95 cursor-pointer min-h-[36px]"
-              aria-label="Fermer la vidéo"
-            >
-              <FaXmark className="text-sm font-black" />
-              <span>FERMER ✕</span>
-            </button>
 
             {/* Floating Mute/Unmute Control */}
             <div className="absolute top-3 right-3 z-20">
@@ -171,8 +160,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
           </div>
 
-          {/* Quick WhatsApp CTA & Bottom Close Action */}
-          <div className="space-y-2 pt-1">
+          {/* Quick WhatsApp CTA */}
+          <div className="pt-1">
             <a
               href={`https://wa.me/2290162569665?text=${encodeURIComponent(`Bonjour Warren, j'ai vu votre vidéo "${project.title}" et j'aimerais un rendu similaire pour mon projet.`)}`}
               target="_blank"
@@ -182,14 +171,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <FaWhatsapp className="text-lg flex-shrink-0" />
               <span>Demander un montage similaire</span>
             </a>
-
-            <button
-              onClick={onClose}
-              className="w-full py-2.5 text-center text-xs text-[#a1a1aa] hover:text-white font-mono flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-            >
-              <FaXmark className="text-xs text-[#84cc16]" />
-              <span>Fermer le lecteur vidéo</span>
-            </button>
           </div>
 
         </div>
