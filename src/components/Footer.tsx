@@ -54,24 +54,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Connect & Socials */}
+          {/* Contact Email */}
           <div className="space-y-3">
-            <h4 className="font-mono text-xs uppercase font-bold text-textLight tracking-wider">
-              Réseaux & Contact
+            <h4 className="font-mono text-xs uppercase font-bold text-white tracking-wider">
+              Contact
             </h4>
-            <div className="flex items-center gap-3 pt-1">
-              <a
-                href="https://wa.me/2290162569665"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[#84cc16] hover:border-[#84cc16] transition-all"
-                aria-label="WhatsApp"
-              >
-                <FaWhatsapp className="text-lg" />
-              </a>
-            </div>
-            <p className="text-xs text-[#a1a1aa] pt-2">
-              Email : <a href="mailto:Warrenmontage28@gmail.com" className="text-[#84cc16] hover:underline">Warrenmontage28@gmail.com</a>
+            <p className="text-xs text-[#a1a1aa]">
+              Email : <a href="mailto:Warrenmontage28@gmail.com" className="text-[#84cc16] hover:underline font-semibold">Warrenmontage28@gmail.com</a>
             </p>
           </div>
 
