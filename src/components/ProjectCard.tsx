@@ -37,6 +37,7 @@ export default function ProjectCard({ project, onOpenModal }: ProjectCardProps) 
         <video
           ref={videoRef}
           src={project.videoUrl}
+          poster={project.thumbnail}
           muted
           loop
           playsInline
