@@ -123,6 +123,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               />
             )}
 
+            {/* Top-Left Close Button DIRECTLY ON THE VIDEO */}
+            <button
+              onClick={onClose}
+              className="absolute top-3 left-3 z-30 px-3.5 py-1.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-black text-xs uppercase flex items-center gap-1.5 shadow-[0_0_15px_rgba(220,38,38,0.8)] border border-red-400/50 transition-all hover:scale-105 active:scale-95 cursor-pointer min-h-[36px]"
+              aria-label="Fermer la vidéo"
+            >
+              <FaXmark className="text-sm font-black" />
+              <span>FERMER ✕</span>
+            </button>
+
             {/* Floating Mute/Unmute Control */}
             <div className="absolute top-3 right-3 z-20">
               <button
