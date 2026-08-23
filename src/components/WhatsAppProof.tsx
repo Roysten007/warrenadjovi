@@ -112,6 +112,7 @@ export default function WhatsAppProof() {
                 src="/Video/Avis/VID-20260823-WA0009.mp4"
                 controls
                 playsInline
+                preload="none"
                 className="w-full h-full object-contain"
               />
             </div>

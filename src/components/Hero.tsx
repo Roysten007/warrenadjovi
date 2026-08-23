@@ -29,11 +29,9 @@ export default function Hero() {
             </div>
 
             {/* Impactful Headline in Satoshi Font */}
-            <h1 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl xl:text-[54px] text-white leading-[1.12] tracking-tight">
-              Je transforme{' '}
-              <span className="text-[#84cc16] font-black">votre marque</span> <br />
-              en contenu{' '}
-              <span className="text-[#84cc16] font-black">qui convertit.</span>
+            <h1 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl xl:text-[52px] text-white leading-[1.15] tracking-tight">
+              Je transforme <span className="text-[#84cc16] font-black">votre marque</span><br className="hidden sm:inline" />{' '}
+              en contenu <span className="text-[#84cc16] font-black">qui convertit.</span>
             </h1>
 
             {/* Subtitle Description in Inter Tight */}

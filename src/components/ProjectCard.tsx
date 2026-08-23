@@ -40,7 +40,7 @@ export default function ProjectCard({ project, onOpenModal }: ProjectCardProps) 
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out filter brightness-[0.95] group-hover:brightness-100"
         />
       ) : (
