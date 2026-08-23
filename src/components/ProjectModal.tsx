@@ -20,9 +20,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     setIsLoadingVideo(true);
     setPlaybackSpeed(1);
 
-    // Prevent body scrolling while modal is open
-    document.body.style.overflow = 'hidden';
-
     // Keyboard ESC key listener
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -32,7 +29,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [project?.id, onClose]);

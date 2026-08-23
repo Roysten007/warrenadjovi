@@ -37,10 +37,12 @@ export default function Projects() {
         </div>
 
         {/* Interactive Video Player Modal */}
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
 
       </div>
     </section>
